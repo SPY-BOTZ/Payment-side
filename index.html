@@ -45,7 +45,6 @@ text-align:center;
 position: relative;
 }
 
-/* Theme Toggle Button */
 .theme-toggle {
 position: absolute;
 top: 15px;
@@ -59,7 +58,6 @@ padding: 5px;
 margin: 0;
 }
 
-/* Flash Sale Glowing Banner */
 .flash-banner {
 background: linear-gradient(90deg, #ff416c, #ff4b2b);
 color: white;
@@ -76,7 +74,6 @@ animation: glowPulse 1.5s infinite alternate;
   100% { opacity: 1; box-shadow: 0 0 15px rgba(255,75,43,0.9); }
 }
 
-/* Countdown Timer Bar */
 .countdown-box {
 background: #ffebee;
 border: 1px solid #ffcdd2;
@@ -188,11 +185,13 @@ background:#0088cc;
 .channel-btn{
 background:#7289da;
 }
+.channel{
+background:#9c27b0;
+}
 .request-btn{
 background:#ff5722;
 }
 
-/* Spin Wheel Trigger Button */
 .spin-trigger-btn {
 background: linear-gradient(45deg, #f39c12, #d35400);
 font-size: 13px;
@@ -206,7 +205,6 @@ animation: bounceBtn 2s infinite;
   50% { transform: translateY(-3px); }
 }
 
-/* Movie Catalog Button Styling */
 .catalog-btn {
 background: linear-gradient(45deg, #8e44ad, #3498db);
 font-size: 14px;
@@ -217,7 +215,6 @@ font-weight: bold;
 box-shadow: 0 4px 12px rgba(142,68,173,0.3);
 }
 
-/* Copy UPI Button */
 .copy-upi-btn {
 background: #6c757d;
 font-size: 14px;
@@ -226,7 +223,6 @@ margin-top: 5px;
 margin-bottom: 5px;
 }
 
-/* Secure Trust & Guarantee Badge */
 .secure-badge {
 font-size: 11px;
 color: #2e7d32;
@@ -245,7 +241,6 @@ color: #d32f2f;
 margin: 12px 0 4px 0;
 }
 
-/* FAQ Section Styling */
 .faq-section {
 text-align: left;
 margin-top: 15px;
@@ -284,7 +279,6 @@ display: none;
 line-height: 1.4;
 }
 
-/* Floating Telegram Chat Button */
 .floating-telegram {
 position: fixed;
 bottom: 20px;
@@ -312,7 +306,6 @@ height: 26px;
 fill: white;
 }
 
-/* Live Tickers */
 .buyer-ticker {
 background: #e6f7ff;
 border: 1px solid #91d5ff;
@@ -353,7 +346,6 @@ font-weight: bold;
 color: #d32f2f;
 }
 
-/* Toast Notification */
 .toast {
 position: fixed;
 bottom: 20px;
@@ -373,7 +365,6 @@ animation: slideIn 0.3s ease;
   to { transform: translateY(0); opacity: 1; }
 }
 
-/* Modals */
 .modal {
 display: none;
 position: fixed;
@@ -436,7 +427,6 @@ text-align: center;
 justify-content: center;
 }
 
-/* QR Code Section inside Modal */
 .qr-container {
 margin: 10px 0;
 background: white;
@@ -453,7 +443,6 @@ display: block;
 margin: 0 auto;
 }
 
-/* Spin Wheel Modal Styling */
 .wheel-container {
 position: relative;
 width: 200px;
@@ -480,165 +469,483 @@ z-index: 10;
 </head>
 <body>
 
-<div class="box">
-<!-- Theme Switcher -->
-<button class="theme-toggle" onclick="toggleTheme()" id="themeBtn">🌙</button>
+  <!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Premium Membership</title>
 
-<!-- Glowing Flash Sale Banner -->
-<div class="flash-banner">
-⚡ Flash Sale Ending Soon! Grab VIP Access Now
-</div>
+<!-- Confetti Library for Celebration Effect -->
+<script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
 
-<!-- Countdown Timer -->
-<div class="countdown-box">
-⏳ Offer expires in: <span id="timer">14:59</span>
-</div>
+<style>
+*{ box-sizing:border-box; transition: background 0.3s, color 0.3s; }
+body{
+margin:0;
+font-family:Arial,sans-serif;
+background: var(--bg-color, #f2f2f2);
+color: var(--text-color, #333);
+min-height:100vh;
+display:flex;
+justify-content:center;
+align-items:center;
+padding:20px 20px 60px 20px;
+}
 
-<img src="logo.png" class="logo">
-<div class="title">🔥 PREMIUM MEMBERSHIP 🔥</div>
+:root {
+--box-bg: #fff;
+--text-color: #333;
+--desc-bg: #fff8f5;
+}
 
-<!-- Spin Wheel Trigger -->
-<button class="spin-trigger-btn" onclick="playClickSound(); openSpinModal()">🎁 Spin to Win Extra Discount!</button>
+body.dark-mode {
+--bg-color: #121212;
+--box-bg: #1e1e1e;
+--text-color: #f1f1f1;
+--desc-bg: #2c221e;
+}
 
-<!-- Movie Catalog Button -->
-<button class="catalog-btn" onclick="playClickSound(); window.location.href='movies.html'">
-  🎬 View All Desy & Catalog
-</button>
+.box{
+background: var(--box-bg);
+width:360px;
+padding:25px 20px;
+border-radius:20px;
+box-shadow:0 5px 25px rgba(0,0,0,0.15);
+text-align:center;
+position: relative;
+}
 
-<!-- Live Viewer Counter -->
-<div class="viewer-counter">
-👀 <span id="viewCount">42</span> people viewing this page right now
-</div>
+.theme-toggle {
+position: absolute;
+top: 15px;
+right: 15px;
+background: none;
+border: none;
+font-size: 20px;
+cursor: pointer;
+width: auto;
+padding: 5px;
+margin: 0;
+}
 
-<!-- PoM PoM Updates Ticker -->
-<div class="movie-update-ticker" id="movieTicker">
-🎬 Checking for new PoM PoM updates...
-</div>
+.flash-banner {
+background: linear-gradient(90deg, #ff416c, #ff4b2b);
+color: white;
+font-size: 11px;
+font-weight: bold;
+padding: 7px 10px;
+border-radius: 8px;
+margin-bottom: 12px;
+text-align: center;
+animation: glowPulse 1.5s infinite alternate;
+}
+@keyframes glowPulse {
+  0% { opacity: 0.8; box-shadow: 0 0 5px rgba(255,65,108,0.5); }
+  100% { opacity: 1; box-shadow: 0 0 15px rgba(255,75,43,0.9); }
+}
 
-<div class="buyer-ticker" id="buyerTicker">
-🔔 <span>@Rahul</span> ne abhi 1 Month ka plan liya!
-</div>
+.countdown-box {
+background: #ffebee;
+border: 1px solid #ffcdd2;
+color: #c62828;
+font-size: 12px;
+font-weight: bold;
+padding: 6px;
+border-radius: 8px;
+margin-bottom: 12px;
+}
 
-<div class="description">
-<b>🔥PoM PoM Premium Channel 🔥</b><br><br>
-🎬 Yahan aapko har tarah ki mil jayengi — Latest,Regional.<br><br>
-✨ Ek hi Premium Membership mein massive PoM PoM collection ka access.
-</div>
+.logo{
+width:100px;
+height:100px;
+border-radius:50%;
+object-fit:cover;
+margin-bottom:5px;
+}
+.title{
+font-size:22px;
+font-weight:900;
+margin:5px 0 10px;
+background:linear-gradient(90deg,#ff4500,#ff9900);
+-webkit-background-clip:text;
+color:transparent;
+}
+.description{
+font-size:13px;
+line-height:1.5;
+color: var(--text-color);
+margin-bottom:12px;
+text-align: left;
+background: var(--desc-bg);
+padding: 10px;
+border-radius: 10px;
+border: 1px dashed #ff9900;
+}
+.payto{
+font-size:15px;
+color:var(--text-color);
+font-weight:bold;
+margin-top:5px;
+}
+.name{
+font-size:24px;
+font-weight:800;
+color:#5a00ff;
+margin:3px 0 15px;
+}
+.plans{
+display:grid;
+grid-template-columns:1fr 1fr;
+gap:8px;
+margin-bottom:15px;
+}
+.plan{
+border:2px solid #ddd;
+border-radius:12px;
+padding:10px 6px;
+background: var(--box-bg);
+cursor:pointer;
+transition:0.2s;
+}
+.plan:hover{
+border-color:#6a00ff;
+}
+.plan.active{
+border-color:#6a00ff;
+background:#f2edff;
+box-shadow:0 0 10px rgba(106,0,255,0.20);
+}
+.plan .duration{
+font-size:15px;
+font-weight:bold;
+color:var(--text-color);
+}
+.plan .price{
+font-size:21px;
+font-weight:900;
+color:#5a00ff;
+margin-top:3px;
+}
+.selected{
+font-size:13px;
+font-weight:bold;
+color:var(--text-color);
+margin:8px 0;
+}
+button{
+width:100%;
+padding:14px;
+font-size:18px;
+font-weight:bold;
+border:none;
+border-radius:10px;
+margin-top:8px;
+color:white;
+cursor:pointer;
+}
+.pay{
+background:#00a651;
+}
+.pay:active{
+transform:scale(0.98);
+}
+.telegram{
+background:#0088cc;
+}
+.channel-btn{
+background:#7289da;
+}
+.channel{
+background:#9c27b0;
+}
+.request-btn{
+background:#ff5722;
+}
 
-<div class="payto">Payment To:</div>
-<div class="name">premium Membership</div>
+.spin-trigger-btn {
+background: linear-gradient(45deg, #f39c12, #d35400);
+font-size: 13px;
+padding: 8px;
+margin-bottom: 10px;
+border-radius: 8px;
+animation: bounceBtn 2s infinite;
+}
+@keyframes bounceBtn {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-3px); }
+}
 
-<div class="plans">
-<div class="plan" onclick="playClickSound(); selectPlan(15,'1week',this)">
-<div class="duration">2 Day</div>
-<div class="price">₹30</div>
-</div>
-<div class="plan" onclick="playClickSound(); selectPlan(45,'1month',this)">
-<div class="duration">1 Weeks</div>
-<div class="price">₹70</div>
-</div>
-<div class="plan" onclick="playClickSound(); selectPlan(85,'2month',this)">
-<div class="duration">1 Month</div>
-<div class="price">₹150</div>
-</div>
-<div class="plan" onclick="playClickSound(); selectPlan(130,'3month',this)">
-<div class="duration">2 Month</div>
-<div class="price">₹280</div>
-</div>
-</div>
+.catalog-btn {
+background: linear-gradient(45deg, #8e44ad, #3498db);
+font-size: 14px;
+padding: 10px;
+margin-bottom: 10px;
+border-radius: 8px;
+font-weight: bold;
+box-shadow: 0 4px 12px rgba(142,68,173,0.3);
+}
 
-<div class="selected" id="selectedPlan">Please select a membership plan</div>
+.copy-upi-btn {
+background: #6c757d;
+font-size: 14px;
+padding: 10px;
+margin-top: 5px;
+margin-bottom: 5px;
+}
 
-<button class="pay" onclick="playClickSound(); openPaymentModal()">💳 Pay Now & Scan QR</button>
-<button class="copy-upi-btn" onclick="playClickSound(); copyUpiId()">📋 Copy UPI ID (Manual Pay)</button>
+.secure-badge {
+font-size: 11px;
+color: #2e7d32;
+background: #e8f5e9;
+border: 1px solid #c8e6c9;
+padding: 6px;
+border-radius: 6px;
+margin-top: 6px;
+font-weight: bold;
+}
 
-<!-- Secure Trust Badge -->
-<div class="secure-badge">
-🔒 100% Secure & Instant Access via UPI
-</div>
+.screenshot-instruction {
+font-size: 13px;
+font-weight: bold;
+color: #d32f2f;
+margin: 12px 0 4px 0;
+}
 
-<div class="screenshot-instruction">📸 Payment ka screenshot Owner ko bhejo</div>
+.faq-section {
+text-align: left;
+margin-top: 15px;
+border-top: 2px solid #eee;
+padding-top: 12px;
+}
+.faq-title {
+font-size: 14px;
+font-weight: bold;
+color: var(--text-color);
+margin-bottom: 8px;
+text-align: center;
+}
+.faq-item {
+background: rgba(0,0,0,0.03);
+border: 1px solid #ddd;
+border-radius: 6px;
+margin-bottom: 6px;
+overflow: hidden;
+}
+.faq-question {
+padding: 8px 10px;
+font-size: 12px;
+font-weight: bold;
+color: var(--text-color);
+cursor: pointer;
+display: flex;
+justify-content: space-between;
+align-items: center;
+}
+.faq-answer {
+padding: 0 10px 8px 10px;
+font-size: 11px;
+color: #777;
+display: none;
+line-height: 1.4;
+}
 
-<button class="telegram" onclick="playClickSound(); winnerScreenshot()">👤 Owner Screenshot</button>
-<button class="channel-btn" onclick="playClickSound(); openMainChannel()">📢 Main Channel</button>
+.floating-telegram {
+position: fixed;
+bottom: 20px;
+right: 20px;
+background: #0088cc;
+color: white;
+width: 50px;
+height: 50px;
+border-radius: 50%;
+display: flex;
+justify-content: center;
+align-items: center;
+box-shadow: 0 4px 15px rgba(0,0,0,0.3);
+z-index: 9999;
+cursor: pointer;
+transition: transform 0.2s;
+text-decoration: none;
+}
+.floating-telegram:hover {
+transform: scale(1.1);
+}
+.floating-telegram svg {
+width: 26px;
+height: 26px;
+fill: white;
+}
 
-<div class="faq-section">
-<div class="faq-title">❓ Frequently Asked Questions</div>
+.buyer-ticker {
+background: #e6f7ff;
+border: 1px solid #91d5ff;
+color: #0050b3;
+font-size: 11px;
+font-weight: bold;
+padding: 7px 10px;
+border-radius: 8px;
+margin-bottom: 10px;
+display: flex;
+align-items: center;
+gap: 6px;
+text-align: left;
+}
+.buyer-ticker span {
+color: #fa8c16;
+}
 
-<div class="faq-item">
-<div class="faq-question" onclick="toggleFaq(this)">Payment ke baad membership kab milegi? <span>▼</span></div>
-<div class="faq-answer">Payment ka screenshot owner ko bhejne ke baad turant aapko private group ka access mil jayega.</div>
-</div>
+.movie-update-ticker {
+background: #fffbe6;
+border: 1px solid #ffe58f;
+color: #d46b08;
+font-size: 11px;
+font-weight: bold;
+padding: 7px 10px;
+border-radius: 8px;
+margin-bottom: 10px;
+text-align: left;
+}
 
-<div class="faq-item">
-<div class="faq-question" onclick="toggleFaq(this)">Access kaise milega? <span>▼</span></div>
-<div class="faq-answer">Owner screenshot verify karke aapko private channel/group ki invite link bhejenge.</div>
-</div>
+.viewer-counter {
+font-size: 11px;
+color: #888;
+margin-bottom: 10px;
+font-weight: bold;
+}
+.viewer-counter span {
+color: #d32f2f;
+}
 
-<div class="faq-item">
-<div class="faq-question" onclick="toggleFaq(this)">Kya sabhi payment apps chalte hain? <span>▼</span></div>
-<div class="faq-answer">Haan, aap Google Pay, PhonePe, Paytm ya kisi bhi UPI app se payment kar sakte hain.</div>
-</div>
-</div>
+.toast {
+position: fixed;
+bottom: 20px;
+left: 20px;
+background: #333;
+color: white;
+padding: 10px 15px;
+border-radius: 8px;
+font-size: 12px;
+box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+z-index: 10000;
+display: none;
+animation: slideIn 0.3s ease;
+}
+@keyframes slideIn {
+  from { transform: translateY(50px); opacity: 0; }
+  to { transform: translateY(0); opacity: 1; }
+}
 
-</div>
+.modal {
+display: none;
+position: fixed;
+z-index: 1000;
+left: 0;
+top: 0;
+width: 100%;
+height: 100%;
+background-color: rgba(0,0,0,0.5);
+justify-content: center;
+align-items: center;
+}
+.modal-content {
+background: var(--box-bg);
+color: var(--text-color);
+width: 320px;
+padding: 20px;
+border-radius: 16px;
+text-align: center;
+box-shadow: 0 5px 20px rgba(0,0,0,0.2);
+}
+.modal-content h3 {
+margin-top: 0;
+font-size: 18px;
+}
+.app-btn {
+display: flex;
+align-items: center;
+justify-content: flex-start;
+gap: 15px;
+width: 100%;
+padding: 10px 15px;
+margin: 8px 0;
+font-size: 14px;
+font-weight: bold;
+border: none;
+border-radius: 10px;
+cursor: pointer;
+color: white;
+text-align: left;
+text-decoration: none;
+}
+.app-logo {
+width: 22px;
+height: 22px;
+border-radius: 50%;
+object-fit: contain;
+background: white;
+padding: 2px;
+}
+.gpay { background: #4285F4; }
+.phonepe { background: #5f259f; }
+.paytm { background: #00b9f1; }
+.amazon { background: #ff9900; color: #111; }
+.close-btn {
+background: #ccc;
+color: #333;
+margin-top: 5px;
+text-align: center;
+justify-content: center;
+}
 
-<!-- Floating Telegram Chat Button -->
-<a href="https://t.me/Rimi5605" target="_blank" class="floating-telegram" title="Chat with Owner">
-<svg viewBox="0 0 24 24"><path d="M12 0C5.373 0 0 5.373 0 12s5.373 12 12 12 12-5.373 12-12S18.627 0 12 0zm5.562 8.161c-.18 1.897-.962 6.502-1.359 8.627-.168.9-.5 1.201-.82 1.23-.697.064-1.228-.461-1.901-.903-1.056-.693-1.653-1.124-2.678-1.8-1.185-.781-.417-1.21.258-1.911.177-.184 3.247-2.977 3.307-3.23.007-.032.014-.15-.056-.212s-.174-.041-.249-.024c-.106.024-1.793 1.14-5.061 3.345-.48.33-.913.49-1.302.482-.428-.008-1.252-.241-1.865-.44-.752-.245-1.349-.374-1.297-.789.027-.216.324-.437.893-.663 3.498-1.524 5.83-2.529 6.998-3.014 3.332-1.386 4.025-1.627 4.476-1.635.099-.002.321.023.465.141.119.098.152.228.163.331.011.103.024.337.013.519z"/></svg>
-</a>
+.qr-container {
+margin: 10px 0;
+background: white;
+padding: 10px;
+border-radius: 10px;
+display: inline-block;
+box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+}
+.qr-container img {
+width: 140px;
+height: 140px;
+object-fit: contain;
+display: block;
+margin: 0 auto;
+}
 
-<!-- Toast Notification -->
-<div id="toast" class="toast">✅ Copied Successfully!</div>
+.wheel-container {
+position: relative;
+width: 200px;
+height: 200px;
+margin: 15px auto;
+border-radius: 50%;
+border: 5px solid #ff9900;
+background: conic-gradient(#ff416c 0deg 90deg, #ff9900 90deg 180deg, #2ecc71 180deg 270deg, #3498db 270deg 360deg);
+transition: transform 4s cubic-bezier(0.17, 0.67, 0.12, 0.99);
+}
+.wheel-pointer {
+position: absolute;
+top: -15px;
+left: 50%;
+transform: translateX(-50%);
+width: 0;
+height: 0;
+border-left: 10px solid transparent;
+border-right: 10px solid transparent;
+border-bottom: 20px solid #e74c3c;
+z-index: 10;
+}
+</style>
+</head>
+<body>
 
-<!-- Payment Modal with QR Code (Download button removed) -->
-<div id="paymentModal" class="modal">
-<div class="modal-content">
-<h3>Scan QR or Pay via App</h3>
-<p id="modalAmount" style="color:var(--text-color); font-weight:bold; margin-bottom:8px;"></p>
-
-<div class="qr-container">
-<div id="qrcode"></div>
-</div>
-
-<a href="javascript:void(0)" onclick="payVia('gpay')" class="app-btn gpay">
-<img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/google/google-original.svg" class="app-logo"> Google Pay Direct
-</a>
-
-<a href="javascript:void(0)" onclick="payVia('phonepe')" class="app-btn phonepe">
-<img src="https://iili.io/CLEyL4R.jpg" class="app-logo"> PhonePe Direct
-</a>
-
-<a href="javascript:void(0)" onclick="payVia('paytm')" class="app-btn paytm">
-<img src="https://iili.io/CLEyDvI.jpg" class="app-logo"> Paytm Direct
-</a>
-
-<button class="app-btn close-btn" onclick="closePaymentModal()">Cancel</button>
-</div>
-</div>
-
-<!-- Spin Wheel Modal -->
-<div id="spinModal" class="modal">
-<div class="modal-content">
-<h3>🎁 Lucky Spin Wheel</h3>
-<p style="font-size:12px; color:#666;">Spin karke discount jeeto!</p>
-<div style="position:relative;">
-<div class="wheel-pointer"></div>
-<div class="wheel-container" id="wheel"></div>
-</div>
-<button class="pay" style="margin-top:15px; padding:10px; font-size:15px;" onclick="spinWheel()">🎲 Spin Now!</button>
-<p id="spinResult" style="font-weight:bold; color:#d32f2f; margin-top:10px; font-size:13px;"></p>
-<button class="app-btn close-btn" onclick="closeSpinModal()">Close</button>
-</div>
-</div>
-
-<!-- Include QRCode JS Library -->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
 
 <script>
 let selectedAmount = 0;
 let selectedDuration = "";
-let plansData = { "1week": "1 Week", "1month": "1 Month", "2month": "2 Month", "3month": "3 Month" };
+let plansData = { "1week": "2 Day", "1month": "1 Weeks", "2month": "1 Month", "3month": "2 Month" };
 let upiId = "BHARATPE.9Q0Q0K0Z8Q466572@unitype";
 let qrCodeInstance = null;
 
@@ -675,29 +982,30 @@ function playClickSound() {
 }
 
 function selectPlan(amount, durationKey, element){
-selectedAmount = amount;
-selectedDuration = plansData[durationKey];
-document.querySelectorAll(".plan").forEach(function(plan){ plan.classList.remove("active"); });
-element.classList.add("active");
-document.getElementById("selectedPlan").innerHTML = "✅ Selected: " + selectedDuration + " — ₹" + amount;
-confetti({ particleCount: 50, spread: 60, origin: { y: 0.7 } });
+  selectedAmount = amount;
+  selectedDuration = plansData[durationKey];
+  document.querySelectorAll(".plan").forEach(function(plan){ plan.classList.remove("active"); });
+  element.classList.add("active");
+  document.getElementById("selectedPlan").innerHTML = "✅ Selected: " + selectedDuration + " — ₹" + amount;
+  confetti({ particleCount: 50, spread: 60, origin: { y: 0.7 } });
 }
 
 function openPaymentModal(){
-if(selectedAmount === 0){ alert("Please select a membership plan first!"); return; }
-document.getElementById("modalAmount").innerHTML = "Amount: ₹" + selectedAmount + " (" + selectedDuration + ")";
-document.getElementById("paymentModal").style.display = "flex";
-let qrContainer = document.getElementById("qrcode");
-qrContainer.innerHTML = "";
-let upiString = `upi://pay?pa=${upiId}&pn=Sekh%20Sarif&am=${selectedAmount}&cu=INR`;
-qrCodeInstance = new QRCode(qrContainer, { text: upiString, width: 130, height: 130 });
-confetti({ particleCount: 100, spread: 80, origin: { y: 0.6 } });
+  if(selectedAmount === 0){ alert("Please select a membership plan first!"); return; }
+  document.getElementById("modalAmount").innerHTML = "Amount: ₹" + selectedAmount + " (" + selectedDuration + ")";
+  document.getElementById("paymentModal").style.display = "flex";
+  let qrContainer = document.getElementById("qrcode");
+  qrContainer.innerHTML = "";
+  let upiString = `upi://pay?pa=${upiId}&pn=Sekh%20Sarif&am=${selectedAmount}&cu=INR`;
+  qrCodeInstance = new QRCode(qrContainer, { text: upiString, width: 130, height: 130 });
+  confetti({ particleCount: 100, spread: 80, origin: { y: 0.6 } });
 }
 
 function closePaymentModal(){ document.getElementById("paymentModal").style.display = "none"; }
 
 function openSpinModal(){ document.getElementById("spinModal").style.display = "flex"; document.getElementById("spinResult").innerText = ""; }
 function closeSpinModal(){ document.getElementById("spinModal").style.display = "none"; }
+
 function spinWheel(){
   let wheel = document.getElementById("wheel");
   let randomDegree = Math.floor(Math.random() * 3600) + 1440;
@@ -709,21 +1017,21 @@ function spinWheel(){
 }
 
 function payVia(appType){
-let pa = upiId;
-let pn = "Sekh%20Sarif";
-let am = selectedAmount;
-let finalUrl = "";
-if(appType === 'gpay'){ finalUrl = "tez://upi/pay?pa=" + pa + "&pn=" + pn + "&am=" + am + "&cu=INR"; }
-else if(appType === 'phonepe'){ finalUrl = "phonepe://pay?pa=" + pa + "&pn=" + pn + "&am=" + am + "&cu=INR"; }
-else { finalUrl = "paytmmp://pay?pa=" + pa + "&pn=" + pn + "&am=" + am + "&cu=INR"; }
-window.location.href = finalUrl;
-closePaymentModal();
+  let pa = upiId;
+  let pn = "Sekh%20Sarif";
+  let am = selectedAmount;
+  let finalUrl = "";
+  if(appType === 'gpay'){ finalUrl = "tez://upi/pay?pa=" + pa + "&pn=" + pn + "&am=" + am + "&cu=INR"; }
+  else if(appType === 'phonepe'){ finalUrl = "phonepe://pay?pa=" + pa + "&pn=" + pn + "&am=" + am + "&cu=INR"; }
+  else { finalUrl = "paytmmp://pay?pa=" + pa + "&pn=" + pn + "&am=" + am + "&cu=INR"; }
+  window.location.href = finalUrl;
+  closePaymentModal();
 }
 
 function toggleFaq(element){
-let answer = element.nextElementSibling;
-if(answer.style.display === "block"){ answer.style.display = "none"; element.querySelector("span").innerText = "▼"; }
-else { answer.style.display = "block"; element.querySelector("span").innerText = "▲"; }
+  let answer = element.nextElementSibling;
+  if(answer.style.display === "block"){ answer.style.display = "none"; element.querySelector("span").innerText = "▼"; }
+  else { answer.style.display = "block"; element.querySelector("span").innerText = "▲"; }
 }
 
 let time = 15 * 60;
@@ -736,30 +1044,21 @@ setInterval(function(){
   if(time > 0) time--;
 }, 1000);
 
-let movieUpdates = [];
+let movieUpdates = [
+  "🎬 Latest PoM PoM Part-1 Video Uploaded!",
+  "🔥 Hot Desi Collection Updated Today!",
+  "✨ New Viral Videos Added in Private Channel!"
+];
 let movieIndex = 0;
-async function fetchMovieUpdates() {
-  try {
-    let response = await fetch('movies.json');
-    let data = await response.json();
-    if(data && data.latest_updates) {
-      movieUpdates = data.latest_updates;
-      updateMovieTicker();
-    }
-  } catch(e) {
-    document.getElementById("Ticker").innerHTML = "🎬 🔥 Latest PoM Pom  Added Daily!";
-  }
-}
 
 function updateMovieTicker() {
   if(movieUpdates.length > 0) {
     let ticker = document.getElementById("movieTicker");
-    ticker.innerHTML = `${Updates[Index]}`;
-    movieIndex = (movieIndex + 1) % Updates.length;
+    ticker.innerHTML = `${movieUpdates[movieIndex]}`;
+    movieIndex = (movieIndex + 1) % movieUpdates.length;
   }
 }
 
-fetchMovieUpdates();
 setInterval(updateMovieTicker, 4500);
 
 let buyers = [
@@ -786,6 +1085,7 @@ setInterval(function(){
 
 function winnerScreenshot(){ window.open("https://t.me/Rimi5605", "_blank"); }
 function openMainChannel(){ window.open("https://t.me/+jrnEipHcaGM5ODc1", "_blank"); }
+function paymentproof(){ window.open("https://t.me/Premium_Jaction", "_blank"); }
 </script>
 
 </body>
